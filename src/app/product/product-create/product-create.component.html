@@ -1,0 +1,57 @@
+<h1>Tạo sản phẩm</h1>
+<a routerLink="/">Danh sách sản phẩm</a>
+<br>
+<!--<form #productCreate='ngForm' (ngSubmit)="createProduct(productCreate)">-->
+<!--  <div>-->
+<!--    <label for="id">Mã sản phẩm</label>-->
+<!--    <input type="text" id="id" name="id"-->
+<!--           required-->
+<!--           #productId='ngModel'-->
+<!--           [(ngModel)]="product.id">-->
+<!--  </div>-->
+<!--  <div *ngIf="productId.touched && productId.invalid">-->
+<!--    <p style="color: red" *ngIf="productId.errors?.required">Trường này bắt buộc phải điền</p>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="name">Tên sản phẩm</label>-->
+<!--    <input type="text" id="name" name="name" [(ngModel)]="product.name">-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="price">Giá sản phẩm</label>-->
+<!--    <input type="text" id="price" name="price" [(ngModel)]="product.price">-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="description">Mô tả sản phẩm</label>-->
+<!--    <input type="text" id="description" name="description" [(ngModel)]="product.description">-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button>Tạo mới</button>-->
+<!--  </div>-->
+<!--</form>-->
+<!--Reactive Form-->
+<form [formGroup]="productForm" (ngSubmit)="createProductUsingReactiveForm()">
+  <div>
+    <label for="id">Mã sản phẩm</label>
+    <input type="text" id="id" formControlName="id">
+  </div>
+  <div>
+    <label for="name">Tên sản phẩm</label>
+    <input type="text" id="name" formControlName="name">
+  </div>
+  <div *ngIf="nameControl.touched && nameControl.invalid">
+        <p style="color: red" *ngIf="nameControl.errors?.required">
+          Trường này bắt buộc phải điền
+        </p>
+      </div>
+  <div>
+    <label for="price">Giá sản phẩm</label>
+    <input type="text" id="price" formControlName="price">
+  </div>
+  <div>
+    <label for="description">Mô tả sản phẩm</label>
+    <input type="text" id="description" formControlName="description">
+  </div>
+  <div>
+    <button>Tạo mới</button>
+  </div>
+</form>
