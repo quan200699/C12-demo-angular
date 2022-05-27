@@ -29,27 +29,23 @@
 <!--  </div>-->
 <!--</form>-->
 <!--Reactive Form-->
-<form [formGroup]="productForm" (ngSubmit)="createProductUsingReactiveForm()">
-  <div>
-    <label for="id">Mã sản phẩm</label>
-    <input type="text" id="id" formControlName="id">
-  </div>
+<form (ngSubmit)="createProductUsingReactiveForm()" [formGroup]="productForm">
   <div>
     <label for="name">Tên sản phẩm</label>
-    <input type="text" id="name" formControlName="name">
+    <input formControlName="name" id="name" type="text">
   </div>
   <div *ngIf="nameControl.touched && nameControl.invalid">
-        <p style="color: red" *ngIf="nameControl.errors?.required">
-          Trường này bắt buộc phải điền
-        </p>
-      </div>
+    <p *ngIf="nameControl.errors?.required" style="color: red">
+      Trường này bắt buộc phải điền
+    </p>
+  </div>
   <div>
     <label for="price">Giá sản phẩm</label>
-    <input type="text" id="price" formControlName="price">
+    <input formControlName="price" id="price" type="text">
   </div>
   <div>
     <label for="description">Mô tả sản phẩm</label>
-    <input type="text" id="description" formControlName="description">
+    <input formControlName="description" id="description" type="text">
   </div>
   <div>
     <button>Tạo mới</button>

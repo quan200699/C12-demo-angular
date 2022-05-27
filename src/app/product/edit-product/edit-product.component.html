@@ -1,0 +1,22 @@
+<form (ngSubmit)="update()" [formGroup]="productForm">
+  <div>
+    <label for="name">Tên sản phẩm</label>
+    <input formControlName="name" id="name" type="text">
+  </div>
+  <div *ngIf="nameControl.touched && nameControl.invalid">
+    <p *ngIf="nameControl.errors?.required" style="color: red">
+      Trường này bắt buộc phải điền
+    </p>
+  </div>
+  <div>
+    <label for="price">Giá sản phẩm</label>
+    <input formControlName="price" id="price" type="text">
+  </div>
+  <div>
+    <label for="description">Mô tả sản phẩm</label>
+    <input formControlName="description" id="description" type="text">
+  </div>
+  <div>
+    <button>Tạo mới</button>
+  </div>
+</form>

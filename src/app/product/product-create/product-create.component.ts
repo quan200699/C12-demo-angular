@@ -12,7 +12,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ProductCreateComponent implements OnInit {
   product: Product = {};
   productForm: FormGroup = new FormGroup({
-    id: new FormControl(0),
     name: new FormControl('', [Validators.required]),
     price: new FormControl(),
     description: new FormControl()
@@ -22,15 +21,11 @@ export class ProductCreateComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit() {
-  }
-
-  get idControl() {
-    return this.productForm.get('id');
-  }
-
   get nameControl() {
     return this.productForm.get('name');
+  }
+
+  ngOnInit() {
   }
 
   //Template
@@ -42,8 +37,10 @@ export class ProductCreateComponent implements OnInit {
 
   //reactive
   createProductUsingReactiveForm() {
-    this.productService.create(this.productForm.value);
-    this.productForm.reset();
+    this.productService.create(this.productForm.value).subscribe(() => {
+      alert('Taoj thanhf cong');
+      this.productForm.reset();
+    });
   }
 
 }

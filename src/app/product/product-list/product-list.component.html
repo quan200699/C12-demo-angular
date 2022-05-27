@@ -6,11 +6,13 @@
     <th>Tên sản phẩm</th>
     <th>Giá sản phẩm</th>
     <th>Mô tả sản phẩm</th>
+    <th>Edit</th>
   </tr>
   <tr *ngFor="let product of products; index as i">
     <td>{{i + 1}}</td>
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
+    <td><a routerLink="/edit/{{product.id}}">Edit</a></td>
   </tr>
 </table>
