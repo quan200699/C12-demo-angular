@@ -48,6 +48,22 @@
     <input formControlName="description" id="description" type="text">
   </div>
   <div>
+    <label for="category">Danh mục sản phẩm</label>
+    <select id="category" formControlName="category">
+      <option [ngValue]="null">Chọn danh mục sản phẩm</option>
+      <ng-container *ngFor="let category of categories">
+        <option [value]="category.id">{{category.name}}</option>
+      </ng-container>
+    </select>
+  </div>
+<!--  <table>-->
+<!--    <ng-container *ngIf="true">-->
+<!--      <tr *ngFor="let category of categories" >-->
+<!--        <td></td>-->
+<!--      </tr>-->
+<!--    </ng-container>-->
+<!--  </table>-->
+  <div>
     <button>Tạo mới</button>
   </div>
 </form>

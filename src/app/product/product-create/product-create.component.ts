@@ -3,6 +3,8 @@ import {ProductService} from '../../service/product/product.service';
 import {Product} from '../../model/product';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CategoryService} from '../../service/category/category.service';
+import {Category} from '../../model/category';
 
 @Component({
   selector: 'app-product-create',
@@ -11,14 +13,16 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ProductCreateComponent implements OnInit {
   product: Product = {};
+  categories: Category[] = [];
   productForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl(),
-    description: new FormControl()
+    description: new FormControl(),
+    category: new FormControl()
   });
 
   constructor(private productService: ProductService,
-              private router: Router) {
+              private categoryService: CategoryService) {
   }
 
   get nameControl() {
@@ -26,6 +30,13 @@ export class ProductCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllCategory();
+  }
+
+  getAllCategory() {
+    this.categoryService.getAll().subscribe(categories => {
+      this.categories = categories;
+    });
   }
 
   //Template
@@ -37,7 +48,12 @@ export class ProductCreateComponent implements OnInit {
 
   //reactive
   createProductUsingReactiveForm() {
-    this.productService.create(this.productForm.value).subscribe(() => {
+    let data = this.productForm.value;
+    let categoryId = data.category;
+    data.category = {
+      id: categoryId
+    }
+    this.productService.create(data).subscribe(() => {
       alert('Taoj thanhf cong');
       this.productForm.reset();
     });
