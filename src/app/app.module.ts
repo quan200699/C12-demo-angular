@@ -8,20 +8,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductCreateComponent} from './product/product-create/product-create.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EditProductComponent } from './product/edit-product/edit-product.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ProductCreateComponent,
-    EditProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
