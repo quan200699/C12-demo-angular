@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product/product.service';
 import {Product} from '../../model/product';
-import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../model/category';
+import {SweetAlertService} from '../../service/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'app-product-create',
@@ -22,6 +22,7 @@ export class ProductCreateComponent implements OnInit {
   });
 
   constructor(private productService: ProductService,
+              private sweetAlertService: SweetAlertService,
               private categoryService: CategoryService) {
   }
 
@@ -50,12 +51,16 @@ export class ProductCreateComponent implements OnInit {
   createProductUsingReactiveForm() {
     let data = this.productForm.value;
     let categoryId = data.category;
-    data.category = {
-      id: categoryId
+    if (categoryId != null){
+      data.category = {
+        id: categoryId
+      };
     }
     this.productService.create(data).subscribe(() => {
-      alert('Taoj thanhf cong');
+      this.sweetAlertService.showNotification('success', 'Tạo thành công!')
       this.productForm.reset();
+    }, () => {
+      this.sweetAlertService.showNotification('error', 'Tạo lỗi!')
     });
   }
 
